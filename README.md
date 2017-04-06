@@ -8,5 +8,5 @@
 
 ### 如果你知道Alfred Workflow 怎么复制`文件`到剪贴板
 
-###请联系我:larry_e@163.com
+### 请联系我:larry_e@163.com
 
