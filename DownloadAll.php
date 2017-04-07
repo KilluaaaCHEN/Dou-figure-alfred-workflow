@@ -18,7 +18,7 @@ class DownloadAll
 
         $is_cs = false;//是否重试
 
-        for ($i = $start; ; $i++) {
+        for ($i = $start; $i < $start + 50; $i++) {
             $content = $this->get($url . $i);
             preg_match_all('/data-original\=\"\/\/([\s\S]*?)\"/', $content, $img_list);
             if (count($img_list[1]) < 10) {
