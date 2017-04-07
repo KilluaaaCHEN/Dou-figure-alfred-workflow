@@ -6,7 +6,7 @@
  */
 class DownloadAll
 {
-    public function down()
+    public function down($start = 1)
     {
         $url = 'https://www.doutula.com/photo/list/?page=';
 
@@ -16,12 +16,19 @@ class DownloadAll
             mkdir($store_path);
         }
 
-        for ($i = 1; ; $i++) {
+        $is_cs = false;//是否重试
+
+        for ($i = $start; ; $i++) {
             $content = $this->get($url . $i);
             preg_match_all('/data-original\=\"\/\/([\s\S]*?)\"/', $content, $img_list);
             if (count($img_list[1]) < 10) {
+                if (!$is_cs) {
+                    $i--;
+                    continue;
+                }
                 break;
             }
+            $is_cs = false;
             foreach ($img_list[1] as $img) {
                 $file_path = $store_path . md5($img) . '.png';
                 if (!file_exists($file_path)) {
@@ -47,5 +54,6 @@ class DownloadAll
 
 }
 
-(new DownloadAll())->down();
+$start = intval($argv[1]);
+(new DownloadAll())->down($start);
 exit;
