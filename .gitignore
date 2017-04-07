@@ -1,3 +1,7 @@
 # Created by .ignore support plugin (hsz.mobi)
+<<<<<<< HEAD
 .idea
 tmp/
+=======
+tmp/*
+>>>>>>> 90c79042f60deb1d71c86d7797263deeb6c25519
