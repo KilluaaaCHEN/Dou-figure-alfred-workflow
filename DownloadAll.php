@@ -12,6 +12,10 @@ class DownloadAll
 
         require 'config.php';
 
+        if (!file_exists($store_path)) {
+            mkdir($store_path);
+        }
+
         for ($i = 1; ; $i++) {
             $content = $this->get($url . $i);
             preg_match_all('/data-original\=\"\/\/([\s\S]*?)\"/', $content, $img_list);
