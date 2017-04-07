@@ -10,15 +10,24 @@ class Index
     {
         $content = $this->get('https://www.doutula.com/search?keyword=' . $query);
         preg_match_all('/data-original\=\"\/\/([\s\S]*?)\"/', $content, $img_list);
+
+        require 'config.php';
+
+        if (!file_exists($store_path)) {
+            mkdir($store_path);
+        }
+        //如果你下载了全部图片,可以删除此段代码 开始
         foreach ($img_list[1] as $i => $item) {
             if ($i < 10) {
-                $file_path = __DIR__ . '/tmp/' . md5($item) . '.png';
+                $file_path = $store_path . md5($item) . '.png';
                 if (!file_exists($file_path)) {
                     $file = $this->get($item);
                     file_put_contents($file_path, $file);
                 }
             }
         }
+        //如果你下载了全部图片,可以删除此段代码 结束
+
         preg_match_all('/<p style=\"([\s\S]*?)<\/p>/', $content, $name_list);
         foreach ($name_list[1] as &$item) {
             $item = substr($item, strpos($item, '>') + 1);
@@ -26,7 +35,7 @@ class Index
         require('workflows.php');
         $w = new Workflows();
         foreach ($img_list[1] as $i => $img) {
-            $img_path = __DIR__ . '/tmp/' . md5($img) . '.png';
+            $img_path = $store_path . md5($img) . '.png';
             $w->result(time(), $img, $name_list[1][$i], '', $img_path, 'yes');
         }
         $handle = fopen('cache.txt', "a+");

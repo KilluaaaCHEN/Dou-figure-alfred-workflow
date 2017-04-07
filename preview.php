@@ -8,7 +8,11 @@ class Preview
 {
     public function search($query)
     {
-        $file_path = __DIR__ . '/tmp/' . md5($query) . '.png';
+
+        require 'config.php';
+
+
+        $file_path = $store_path . md5($query) . '.png';
         if (!file_exists($file_path)) {
             $file = $this->get($query);
             file_put_contents($file_path, $file);

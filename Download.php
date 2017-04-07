@@ -11,12 +11,15 @@ class Download
         $lines = file_get_contents('cache.txt');
         $str_list = explode("\n", $lines);
         $str_list = array_unique($str_list);
+
+        require 'config.php';
+
         foreach ($str_list as $query) {
             if (trim($query)) {
                 $content = $this->get('https://www.doutula.com/search?keyword=' . $query);
                 preg_match_all('/data-original\=\"\/\/([\s\S]*?)\"/', $content, $img_list);
                 foreach ($img_list[1] as $img) {
-                    $file_path = __DIR__ . '/tmp/' . md5($img) . '.png';
+                    $file_path = $store_path . md5($img) . '.png';
                     if (!file_exists($file_path)) {
                         $file = $this->get($img);
                         file_put_contents($file_path, $file);

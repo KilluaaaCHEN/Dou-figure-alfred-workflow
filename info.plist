@@ -3,9 +3,22 @@
 <plist version="1.0">
 <dict>
 	<key>bundleid</key>
-	<string>com.alfredapp.vero.gettingstarted.keywords</string>
+	<string>506abebdae3a5f98fd9822fc4d32b34d</string>
 	<key>connections</key>
 	<dict>
+		<key>03F0F61A-BDC4-4F63-8F6E-DFF5E4D5396A</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>3F7DE7ED-1859-4F14-B259-9452CA0F00D4</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>3560B2C8-B27E-4452-A9BE-C23592F78025</key>
 		<array>
 			<dict>
@@ -29,8 +42,34 @@
 				<false/>
 			</dict>
 		</array>
+		<key>3F7DE7ED-1859-4F14-B259-9452CA0F00D4</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>2CF17673-5F11-473E-B03C-DB04892EB87A</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>A105DBAE-3853-4BD8-8B07-0DF05C715F9E</key>
 		<array/>
+		<key>B2766B5C-9C5D-4BE4-A748-35C43FCD5C7C</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>3560B2C8-B27E-4452-A9BE-C23592F78025</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>C00A865B-E24F-4449-9800-1773A74848FB</key>
 		<array>
 			<dict>
@@ -150,12 +189,43 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>action</key>
+				<integer>0</integer>
+				<key>argument</key>
+				<integer>0</integer>
+				<key>focusedappvariable</key>
+				<false/>
+				<key>focusedappvariablename</key>
+				<string></string>
+				<key>hotkey</key>
+				<integer>2</integer>
+				<key>hotmod</key>
+				<integer>655360</integer>
+				<key>hotstring</key>
+				<string>D</string>
+				<key>leftcursor</key>
+				<false/>
+				<key>modsmode</key>
+				<integer>0</integer>
+				<key>relatedAppsMode</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.hotkey</string>
+			<key>uid</key>
+			<string>B2766B5C-9C5D-4BE4-A748-35C43FCD5C7C</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>cp $1 ~/Desktop/斗图神器.jpg</string>
+				<string>cp $1 ~/Pictures/斗图神器.jpg</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -171,14 +241,6 @@
 			<integer>2</integer>
 		</dict>
 		<dict>
-			<key>type</key>
-			<string>alfred.workflow.action.revealfile</string>
-			<key>uid</key>
-			<string>73C71487-6079-42CA-831B-3E959C6BAE2F</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
 			<key>config</key>
 			<dict>
 				<key>concurrently</key>
@@ -186,7 +248,7 @@
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>echo '~/Desktop/斗图神器.jpg';</string>
+				<string>echo '~/Pictures/斗图神器.jpg';</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -200,6 +262,14 @@
 			<string>C00A865B-E24F-4449-9800-1773A74848FB</string>
 			<key>version</key>
 			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>type</key>
+			<string>alfred.workflow.action.revealfile</string>
+			<key>uid</key>
+			<string>73C71487-6079-42CA-831B-3E959C6BAE2F</string>
+			<key>version</key>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -224,6 +294,71 @@
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>removeextension</key>
+				<false/>
+				<key>text</key>
+				<string></string>
+				<key>title</key>
+				<string>所有图片下载完成 - 斗图神器</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>2CF17673-5F11-473E-B03C-DB04892EB87A</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<true/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>php DownloadAll.php</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>5</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>3F7DE7ED-1859-4F14-B259-9452CA0F00D4</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>dadt</string>
+				<key>subtext</key>
+				<string>可能需要一段时间...5万多张</string>
+				<key>text</key>
+				<string>下载所有图图片-斗图神器</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>03F0F61A-BDC4-4F63-8F6E-DFF5E4D5396A</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
 	</array>
 	<key>readme</key>
 	<string>Keywords are one of Alfred's most commonly used and most useful ways of launching actions. Set a keyword and connect it to the action(s) you want to perform.
@@ -231,26 +366,56 @@
 Type your keyword into Alfred, followed by your input text if needed, and you'll be on your way to boosting your productivity!</string>
 	<key>uidata</key>
 	<dict>
+		<key>03F0F61A-BDC4-4F63-8F6E-DFF5E4D5396A</key>
+		<dict>
+			<key>note</key>
+			<string>下载所有图片</string>
+			<key>xpos</key>
+			<integer>180</integer>
+			<key>ypos</key>
+			<integer>480</integer>
+		</dict>
+		<key>2CF17673-5F11-473E-B03C-DB04892EB87A</key>
+		<dict>
+			<key>xpos</key>
+			<integer>530</integer>
+			<key>ypos</key>
+			<integer>480</integer>
+		</dict>
 		<key>3560B2C8-B27E-4452-A9BE-C23592F78025</key>
 		<dict>
 			<key>xpos</key>
-			<integer>110</integer>
+			<integer>170</integer>
 			<key>ypos</key>
 			<integer>230</integer>
+		</dict>
+		<key>3F7DE7ED-1859-4F14-B259-9452CA0F00D4</key>
+		<dict>
+			<key>xpos</key>
+			<integer>360</integer>
+			<key>ypos</key>
+			<integer>480</integer>
 		</dict>
 		<key>73C71487-6079-42CA-831B-3E959C6BAE2F</key>
 		<dict>
 			<key>xpos</key>
-			<integer>820</integer>
+			<integer>810</integer>
 			<key>ypos</key>
 			<integer>320</integer>
 		</dict>
 		<key>A105DBAE-3853-4BD8-8B07-0DF05C715F9E</key>
 		<dict>
 			<key>xpos</key>
-			<integer>320</integer>
+			<integer>350</integer>
 			<key>ypos</key>
 			<integer>130</integer>
+		</dict>
+		<key>B2766B5C-9C5D-4BE4-A748-35C43FCD5C7C</key>
+		<dict>
+			<key>xpos</key>
+			<integer>10</integer>
+			<key>ypos</key>
+			<integer>230</integer>
 		</dict>
 		<key>C00A865B-E24F-4449-9800-1773A74848FB</key>
 		<dict>
@@ -262,14 +427,14 @@ Type your keyword into Alfred, followed by your input text if needed, and you'll
 		<key>D80EAEA6-CB95-4518-BB10-EBBE3ADCB8A7</key>
 		<dict>
 			<key>xpos</key>
-			<integer>320</integer>
+			<integer>360</integer>
 			<key>ypos</key>
 			<integer>320</integer>
 		</dict>
 		<key>E5AA7E2E-2DD6-4C77-9EDC-9C1F671D3453</key>
 		<dict>
 			<key>xpos</key>
-			<integer>480</integer>
+			<integer>500</integer>
 			<key>ypos</key>
 			<integer>320</integer>
 		</dict>
