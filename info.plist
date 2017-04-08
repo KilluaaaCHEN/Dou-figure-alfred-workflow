@@ -23,7 +23,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>A105DBAE-3853-4BD8-8B07-0DF05C715F9E</string>
+				<string>9D5BFA17-D370-4323-9A4D-5ADABAAF3B94</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -43,8 +43,6 @@
 			</dict>
 		</array>
 		<key>3F7DE7ED-1859-4F14-B259-9452CA0F00D4</key>
-		<array/>
-		<key>A105DBAE-3853-4BD8-8B07-0DF05C715F9E</key>
 		<array/>
 		<key>B2766B5C-9C5D-4BE4-A748-35C43FCD5C7C</key>
 		<array>
@@ -117,7 +115,7 @@
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>php Download.php "{query}"</string>
+				<string>php src/index.php 'download'</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -128,7 +126,7 @@
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>A105DBAE-3853-4BD8-8B07-0DF05C715F9E</string>
+			<string>9D5BFA17-D370-4323-9A4D-5ADABAAF3B94</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -154,7 +152,7 @@
 				<key>runningsubtext</key>
 				<string>Loading...</string>
 				<key>script</key>
-				<string>php index.php "{query}"</string>
+				<string>php src/index.php 'search' "{query}" </string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -233,6 +231,37 @@
 			<key>config</key>
 			<dict>
 				<key>concurrently</key>
+				<true/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>php src/Index.php 'preview' "{query}"</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>5</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>D80EAEA6-CB95-4518-BB10-EBBE3ADCB8A7</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>type</key>
+			<string>alfred.workflow.action.revealfile</string>
+			<key>uid</key>
+			<string>73C71487-6079-42CA-831B-3E959C6BAE2F</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
 				<integer>102</integer>
@@ -249,80 +278,6 @@
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
 			<string>C00A865B-E24F-4449-9800-1773A74848FB</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>type</key>
-			<string>alfred.workflow.action.revealfile</string>
-			<key>uid</key>
-			<string>73C71487-6079-42CA-831B-3E959C6BAE2F</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<true/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>php preview.php "{query}"</string>
-				<key>scriptargtype</key>
-				<integer>0</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>5</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>D80EAEA6-CB95-4518-BB10-EBBE3ADCB8A7</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<true/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>php DownloadAll.php 1&amp;
-php DownloadAll.php 150&amp;
-php DownloadAll.php 100&amp;
-php DownloadAll.php 150&amp;
-php DownloadAll.php 200&amp;
-php DownloadAll.php 250&amp;
-php DownloadAll.php 300&amp;
-php DownloadAll.php 350&amp;
-php DownloadAll.php 400&amp;
-php DownloadAll.php 450&amp;
-php DownloadAll.php 500&amp;
-php DownloadAll.php 550&amp;
-php DownloadAll.php 600&amp;
-php DownloadAll.php 650&amp;
-php DownloadAll.php 700&amp;
-php DownloadAll.php 750&amp;
-php DownloadAll.php 800&amp;
-php DownloadAll.php 850&amp;
-php DownloadAll.php 900&amp;
-php DownloadAll.php 950&amp;
-php DownloadAll.php 1000&amp;</string>
-				<key>scriptargtype</key>
-				<integer>0</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>5</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>3F7DE7ED-1859-4F14-B259-9452CA0F00D4</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -346,6 +301,39 @@ php DownloadAll.php 1000&amp;</string>
 			<string>03F0F61A-BDC4-4F63-8F6E-DFF5E4D5396A</string>
 			<key>version</key>
 			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<true/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>php DownloadAll.php 1&amp;
+php DownloadAll.php 100&amp;
+php DownloadAll.php 200&amp;
+php DownloadAll.php 300&amp;
+php DownloadAll.php 400&amp;
+php DownloadAll.php 500&amp;
+php DownloadAll.php 600&amp;
+php DownloadAll.php 700&amp;
+php DownloadAll.php 800&amp;
+php DownloadAll.php 900&amp;
+php DownloadAll.php 1000&amp;</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>5</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>3F7DE7ED-1859-4F14-B259-9452CA0F00D4</string>
+			<key>version</key>
+			<integer>2</integer>
 		</dict>
 	</array>
 	<key>readme</key>
@@ -384,12 +372,12 @@ Type your keyword into Alfred, followed by your input text if needed, and you'll
 			<key>ypos</key>
 			<integer>320</integer>
 		</dict>
-		<key>A105DBAE-3853-4BD8-8B07-0DF05C715F9E</key>
+		<key>9D5BFA17-D370-4323-9A4D-5ADABAAF3B94</key>
 		<dict>
 			<key>xpos</key>
-			<integer>350</integer>
+			<integer>360</integer>
 			<key>ypos</key>
-			<integer>130</integer>
+			<integer>140</integer>
 		</dict>
 		<key>B2766B5C-9C5D-4BE4-A748-35C43FCD5C7C</key>
 		<dict>
