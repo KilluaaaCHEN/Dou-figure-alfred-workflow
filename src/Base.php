@@ -57,6 +57,9 @@ class Base
     public function getImgPath($img, $is_download = false)
     {
         $file_path = $this->store_path . md5($img) . '.png';
+        if (!file_exists($this->store_path)) {
+            mkdir($this->store_path);
+        }
         if ($is_download && !file_exists($file_path)) {
             $file = $this->get($img);
             file_put_contents($file_path, $file);
