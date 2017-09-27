@@ -22,7 +22,7 @@
 
 图片默认保存在`~/Pictures/.DouTu/`下面,不要了可以直接删掉`rm -rf ~/Pictures/.DouTu`
 
-想修改图片保存路径可以修改`config.php`文件
+想修改图片保存路径可以修改`src/Base.php`文件中的第`33`行
 
 ## 效果图
 
