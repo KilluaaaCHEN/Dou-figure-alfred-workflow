@@ -19,9 +19,8 @@ class Index extends Base
     {
         $content = $this->get($this->search_url . $query);
         preg_match_all($this->img_match, $content, $img_list);
-        $this->checkStorePath();
         foreach ($img_list[1] as $i => $item) {
-            if ($i < 10) {
+            if ($i < 9) {
                 $this->getImgPath($item, true);
             }
         }
@@ -34,6 +33,9 @@ class Index extends Base
         foreach ($img_list[1] as $i => $img) {
             $img_path = $this->getImgPath($img, false);
             $w->result(time(), $img, $name_list[1][$i], '', $img_path, 'yes');
+        }
+        if (count($w->results()) == 0) {
+            $w->result(time(), '', 'Not Found', 'Are you sure for "' . $query . '" ???', 'icon.png', 'no');
         }
 
         if ($fp = fopen($this->cache_path, 'a+')) {

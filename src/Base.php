@@ -11,7 +11,7 @@ class Base
     protected $store_path;
 
     //图片匹配规则
-    protected $img_match = '/data-original\=\"\/\/([\s\S]*?)\"/';
+    protected $img_match = '/data-original\=\"([\s\S]*?)\"/';
 
     //名称匹配规则
     protected $name_match = '/<p style=\"([\s\S]*?)<\/p>/';
@@ -24,6 +24,9 @@ class Base
 
     //检索历史路径
     protected $cache_path = 'cache.txt';
+
+    public static $is_query;
+
 
     function __construct()
     {
