@@ -23,6 +23,21 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
+				<string>8CA223B5-2E6B-4109-B106-2CA8ECBBAC5E</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>3F7DE7ED-1859-4F14-B259-9452CA0F00D4</key>
+		<array/>
+		<key>8CA223B5-2E6B-4109-B106-2CA8ECBBAC5E</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
 				<string>9D5BFA17-D370-4323-9A4D-5ADABAAF3B94</string>
 				<key>modifiers</key>
 				<integer>0</integer>
@@ -42,8 +57,6 @@
 				<false/>
 			</dict>
 		</array>
-		<key>3F7DE7ED-1859-4F14-B259-9452CA0F00D4</key>
-		<array/>
 		<key>B2766B5C-9C5D-4BE4-A748-35C43FCD5C7C</key>
 		<array>
 			<dict>
@@ -110,23 +123,46 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>concurrently</key>
+				<key>alfredfiltersresults</key>
 				<false/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>1</integer>
 				<key>escaping</key>
 				<integer>102</integer>
+				<key>keyword</key>
+				<string>killua_dzsq {query}</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string>Loading...</string>
 				<key>script</key>
-				<string>php src/index.php 'download'</string>
+				<string>query=$1
+php src/index.php 'search' "{query}"&amp;</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
 				<string></string>
+				<key>subtext</key>
+				<string></string>
+				<key>title</key>
+				<string>Search 斗图啦 for '{query}'</string>
 				<key>type</key>
-				<integer>5</integer>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.action.script</string>
+			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
-			<string>9D5BFA17-D370-4323-9A4D-5ADABAAF3B94</string>
+			<string>8CA223B5-2E6B-4109-B106-2CA8ECBBAC5E</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -135,8 +171,10 @@
 			<dict>
 				<key>alfredfiltersresults</key>
 				<false/>
-				<key>argumenttype</key>
+				<key>argumenttrimmode</key>
 				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>1</integer>
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>keyword</key>
@@ -152,7 +190,8 @@
 				<key>runningsubtext</key>
 				<string>Loading...</string>
 				<key>script</key>
-				<string>php src/index.php 'search' "{query}" </string>
+				<string>query=$1
+php src/index.php 'first' "{query}"&amp;</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -187,7 +226,7 @@
 				<key>hotkey</key>
 				<integer>2</integer>
 				<key>hotmod</key>
-				<integer>655360</integer>
+				<integer>1179648</integer>
 				<key>hotstring</key>
 				<string>D</string>
 				<key>leftcursor</key>
@@ -201,6 +240,29 @@
 			<string>alfred.workflow.trigger.hotkey</string>
 			<key>uid</key>
 			<string>B2766B5C-9C5D-4BE4-A748-35C43FCD5C7C</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>php src/index.php 'download'</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>5</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>9D5BFA17-D370-4323-9A4D-5ADABAAF3B94</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -231,6 +293,37 @@
 			<key>config</key>
 			<dict>
 				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>echo '~/Pictures/斗图神器.jpg';</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>1</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>C00A865B-E24F-4449-9800-1773A74848FB</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>type</key>
+			<string>alfred.workflow.action.revealfile</string>
+			<key>uid</key>
+			<string>73C71487-6079-42CA-831B-3E959C6BAE2F</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
 				<true/>
 				<key>escaping</key>
 				<integer>102</integer>
@@ -251,33 +344,35 @@
 			<integer>2</integer>
 		</dict>
 		<dict>
-			<key>type</key>
-			<string>alfred.workflow.action.revealfile</string>
-			<key>uid</key>
-			<string>73C71487-6079-42CA-831B-3E959C6BAE2F</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
 			<key>config</key>
 			<dict>
 				<key>concurrently</key>
-				<false/>
+				<true/>
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>echo '~/Pictures/斗图神器.jpg';</string>
+				<string>php src/index.php 'downloadAll' 1&amp;
+php src/index.php 'downloadAll' 100&amp;
+php src/index.php 'downloadAll' 200&amp;
+php src/index.php 'downloadAll' 300&amp;
+php src/index.php 'downloadAll' 400&amp;
+php src/index.php 'downloadAll' 500&amp;
+php src/index.php 'downloadAll' 600&amp;
+php src/index.php 'downloadAll' 700&amp;
+php src/index.php 'downloadAll' 800&amp;
+php src/index.php 'downloadAll' 900&amp;
+php src/index.php 'downloadAll' 1000&amp;</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
-				<integer>1</integer>
+				<integer>5</integer>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>C00A865B-E24F-4449-9800-1773A74848FB</string>
+			<string>3F7DE7ED-1859-4F14-B259-9452CA0F00D4</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -302,39 +397,6 @@
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<true/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>php DownloadAll.php 1&amp;
-php DownloadAll.php 100&amp;
-php DownloadAll.php 200&amp;
-php DownloadAll.php 300&amp;
-php DownloadAll.php 400&amp;
-php DownloadAll.php 500&amp;
-php DownloadAll.php 600&amp;
-php DownloadAll.php 700&amp;
-php DownloadAll.php 800&amp;
-php DownloadAll.php 900&amp;
-php DownloadAll.php 1000&amp;</string>
-				<key>scriptargtype</key>
-				<integer>0</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>5</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>3F7DE7ED-1859-4F14-B259-9452CA0F00D4</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
 	</array>
 	<key>readme</key>
 	<string>Keywords are one of Alfred's most commonly used and most useful ways of launching actions. Set a keyword and connect it to the action(s) you want to perform.
@@ -347,21 +409,21 @@ Type your keyword into Alfred, followed by your input text if needed, and you'll
 			<key>note</key>
 			<string>下载所有图片</string>
 			<key>xpos</key>
-			<integer>170</integer>
+			<integer>180</integer>
 			<key>ypos</key>
 			<integer>450</integer>
 		</dict>
 		<key>3560B2C8-B27E-4452-A9BE-C23592F78025</key>
 		<dict>
 			<key>xpos</key>
-			<integer>170</integer>
-			<key>ypos</key>
 			<integer>230</integer>
+			<key>ypos</key>
+			<integer>120</integer>
 		</dict>
 		<key>3F7DE7ED-1859-4F14-B259-9452CA0F00D4</key>
 		<dict>
 			<key>xpos</key>
-			<integer>360</integer>
+			<integer>370</integer>
 			<key>ypos</key>
 			<integer>450</integer>
 		</dict>
@@ -372,19 +434,26 @@ Type your keyword into Alfred, followed by your input text if needed, and you'll
 			<key>ypos</key>
 			<integer>320</integer>
 		</dict>
+		<key>8CA223B5-2E6B-4109-B106-2CA8ECBBAC5E</key>
+		<dict>
+			<key>xpos</key>
+			<integer>420</integer>
+			<key>ypos</key>
+			<integer>120</integer>
+		</dict>
 		<key>9D5BFA17-D370-4323-9A4D-5ADABAAF3B94</key>
 		<dict>
 			<key>xpos</key>
-			<integer>360</integer>
+			<integer>680</integer>
 			<key>ypos</key>
-			<integer>140</integer>
+			<integer>120</integer>
 		</dict>
 		<key>B2766B5C-9C5D-4BE4-A748-35C43FCD5C7C</key>
 		<dict>
 			<key>xpos</key>
-			<integer>10</integer>
+			<integer>40</integer>
 			<key>ypos</key>
-			<integer>230</integer>
+			<integer>120</integer>
 		</dict>
 		<key>C00A865B-E24F-4449-9800-1773A74848FB</key>
 		<dict>
@@ -409,7 +478,7 @@ Type your keyword into Alfred, followed by your input text if needed, and you'll
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.0</string>
+	<string>3.0</string>
 	<key>webaddress</key>
 	<string>http://larry666.com</string>
 </dict>

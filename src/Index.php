@@ -17,6 +17,8 @@ class Index extends Base
      */
     public function search($query)
     {
+        require_once 'workflows.php';
+        $w = new Workflows();
         $content = $this->get($this->search_url . $query);
         preg_match_all($this->img_match, $content, $img_list);
         foreach ($img_list[1] as $i => $item) {
@@ -28,8 +30,7 @@ class Index extends Base
         foreach ($name_list[1] as &$item) {
             $item = substr($item, strpos($item, '>') + 1);
         }
-        require_once 'workflows.php';
-        $w = new Workflows();
+
         foreach ($img_list[1] as $i => $img) {
             $img_path = $this->getImgPath($img, false);
             $w->result(time(), $img, $name_list[1][$i], '', $img_path, 'yes');
@@ -52,6 +53,14 @@ class Index extends Base
             fclose($fp);
         }
 
+        echo $w->toxml();
+    }
+
+    public function first($query)
+    {
+        require_once 'workflows.php';
+        $w = new Workflows();
+        $w->result(time(), $query, "Search 斗图啦 for '{$query}'", '键入enter开始检索', 'icon.png', 'yes');
         echo $w->toxml();
     }
 
