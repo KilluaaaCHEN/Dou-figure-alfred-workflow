@@ -124,4 +124,4 @@ class Index extends Base
 }
 
 $index = new Index();
-@$index->$argv[1]($argv[2]);
+@$index->{$argv[1]}($argv[2]);
