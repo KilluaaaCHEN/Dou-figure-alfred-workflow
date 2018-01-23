@@ -60,7 +60,7 @@ class Index extends Base
     {
         require_once 'workflows.php';
         $w = new Workflows();
-        $w->result(time(), $query, "Search 斗图啦 for '{$query}'", '键入enter开始检索', 'icon.png', 'yes');
+        $w->result(time(), $query, "Search 斗图啦 for '{$query}'", '键入Return开始检索', 'icon.png', 'yes');
         echo $w->toxml();
     }
 
