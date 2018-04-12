@@ -19,6 +19,11 @@ class Index extends Base
     {
         require_once 'workflows.php';
         $w = new Workflows();
+        $is_gif = false;//是否只查询gif
+        if (strpos($query, 'gif') !== false) {
+            $is_gif = true;
+            $query = str_replace('gif', '', $query);
+        }
         $content = $this->get($this->search_url . $query);
         preg_match_all($this->img_match, $content, $img_list);
         foreach ($img_list[1] as $i => $item) {
@@ -33,7 +38,13 @@ class Index extends Base
 
         foreach ($img_list[1] as $i => $img) {
             $img_path = $this->getImgPath($img, false);
-            $w->result(time(), $img, $name_list[1][$i], '', $img_path, 'yes');
+            $gif = '';//gif标识
+            if (strpos($img, '.gif') !== false) {
+                $gif = '   - gif';
+            } elseif ($is_gif) {
+                continue;
+            }
+            $w->result(time(), $img, $name_list[1][$i] . $gif, '', $img_path, 'yes');
         }
         if (count($w->results()) == 0) {
             $w->result(time(), '', 'Not Found', 'Are you sure for "' . $query . '" ???', 'icon.png', 'no');
