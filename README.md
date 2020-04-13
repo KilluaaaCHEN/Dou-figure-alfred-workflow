@@ -2,7 +2,7 @@
 
 ### 下载
 
-[下载斗图神器2.0](source/DouTu.alfredworkflow)
+[下载斗图神器2.0](resource/DouTu.alfredworkflow)
 
 ### 使用
 
@@ -11,7 +11,7 @@
 
 ### 效果图
 
- ![效果图](source/preview.gif)
+ ![效果图](resource/preview.gif)
 
 ### 说明
 
