@@ -71,9 +71,9 @@ func getContent(query string) {
 		go saveFile(url)
 		list = append(list, Item{Arg: icon, Title: name, Icon: icon})
 	})
-	xml := GetXml(list)
+	xmlStr := GetXml(list)
 	wg.Wait()
-	fmt.Println(xml)
+	fmt.Println(xmlStr)
 }
 
 func exist(filename string) bool {
