@@ -20,14 +20,14 @@ const IMG_PATH = "images"
 var wg sync.WaitGroup
 
 type Items struct {
-	XMLName  xml.Name `xml:"items"`;
-	Version  string   `xml:"version,attr"`;
+	XMLName  xml.Name `xml:"items"`
+	Version  string   `xml:"version,attr"`
 	Encoding string   `xml:"encoding,attr"`
-	Item     []Item   `xml:"item"`;
+	Item     []Item   `xml:"item"`
 }
 
 type Item struct {
-	XMLName      xml.Name `xml:"item"`;
+	XMLName      xml.Name `xml:"item"`
 	Uid          int64    `xml:"uid,attr"`
 	Arg          string   `xml:"arg,attr"`
 	Valid        string   `xml:"valid,attr"`
@@ -43,7 +43,7 @@ func GetXml(list []Item) string {
 		v.Valid = "yes"
 		bs.Item = append(bs.Item, v)
 	}
-	data, _ := xml.MarshalIndent(&bs, "", "  ");
+	data, _ := xml.MarshalIndent(&bs, "", "  ")
 	return string(data)
 }
 
