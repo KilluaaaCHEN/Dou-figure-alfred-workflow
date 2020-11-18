@@ -1,10 +1,10 @@
 package main
 
 import (
+	"encoding/json"
 	"encoding/xml"
 	"flag"
 	"fmt"
-	"github.com/PuerkitoBio/goquery"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -14,10 +14,19 @@ import (
 	"time"
 )
 
-const QUERY_URL = "https://www.doutula.com/search?keyword="
-const IMG_PATH = "images"
+const ApiUrl = "https://www.52doutu.cn/api/"
+const ImgPath = "images"
 
 var wg sync.WaitGroup
+
+type Result struct {
+	Code  int    `json:"code"`
+	Msg   string `json:"msg"`
+	Count int    `json:"count"`
+	Rows  []struct {
+		URL string `json:"url"`
+	} `json:"rows"`
+}
 
 type Items struct {
 	XMLName  xml.Name `xml:"items"`
@@ -47,30 +56,62 @@ func GetXml(list []Item) string {
 	return string(data)
 }
 
+func showError(msg string) {
+	list := make([]Item, 0)
+	list = append(list, Item{Arg: "", Title: "异常:" + msg, Icon: ""})
+	xmlStr := GetXml(list)
+	wg.Wait()
+	fmt.Println(xmlStr)
+	os.Exit(1)
+}
+
 func getContent(query string) {
-	url := QUERY_URL + query
-	resp, err := http.Get(url)
+	client := &http.Client{}
+
+	req, err := http.NewRequest("POST", ApiUrl, strings.NewReader("types=search&action=searchpic&limit=60&offset=0&wd="+query))
 	if err != nil {
-		log.Fatal("网络请求失败:", err)
+		showError(err.Error())
 	}
-	if resp.StatusCode != 200 {
-		log.Fatalf("网络请求失败: %d %s", resp.StatusCode, resp.Status)
+
+	req.Header.Set("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8")
+	req.Header.Set("Accept", "application/json, text/javascript, */*; q=0.01")
+	req.Header.Set("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36")
+	req.Header.Set("Referer", ApiUrl)
+	req.Header.Set("Origin", ApiUrl)
+
+	resp, err := client.Do(req)
+
+	if err != nil {
+		showError(err.Error())
 	}
+
 	defer resp.Body.Close()
 
-	doc, err := goquery.NewDocumentFromReader(resp.Body)
+	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		log.Fatal(err)
+		showError(err.Error())
 	}
+	rst := Result{}
+
+	if err := json.Unmarshal(body, &rst); err != nil {
+		showError(err.Error())
+	}
+
+	if rst.Code != 200 {
+		showError(rst.Msg)
+	}
+	if rst.Count <= 0 {
+		showError("无结果")
+	}
+
 	list := make([]Item, 0)
-	doc.Find(".img-responsive").Each(func(i int, s *goquery.Selection) {
-		url, _ := s.Attr("data-original")
-		name := s.Next().Text()
+	for _, v := range rst.Rows {
+		url := v.URL
 		icon := getFileName(url)
 		wg.Add(1)
 		go saveFile(url)
-		list = append(list, Item{Arg: icon, Title: name, Icon: icon})
-	})
+		list = append(list, Item{Arg: icon, Title: query, Icon: icon})
+	}
 	xmlStr := GetXml(list)
 	wg.Wait()
 	fmt.Println(xmlStr)
@@ -82,14 +123,14 @@ func exist(filename string) bool {
 }
 
 func getFileName(url string) string {
-	url_list := strings.Split(url, "/")
-	return IMG_PATH + "/" + url_list[len(url_list)-1]
+	urlList := strings.Split(url, "/")
+	return ImgPath + "/" + urlList[len(urlList)-1]
 }
 
 func saveFile(url string) string {
 	defer wg.Done()
-	if !exist(IMG_PATH) {
-		_ = os.Mkdir(IMG_PATH, 0777)
+	if !exist(ImgPath) {
+		_ = os.Mkdir(ImgPath, 0777)
 	}
 	filename := getFileName(url)
 	if exist(filename) {
