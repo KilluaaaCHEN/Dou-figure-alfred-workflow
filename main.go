@@ -1,7 +1,6 @@
 package main
 
 import (
-	"encoding/json"
 	"encoding/xml"
 	"flag"
 	"fmt"
@@ -12,21 +11,14 @@ import (
 	"strings"
 	"sync"
 	"time"
+
+	"github.com/PuerkitoBio/goquery"
 )
 
-const ApiUrl = "https://www.52doutu.cn/api/"
+const QueryUrl = "https://www.doutula.com/search?keyword="
 const ImgPath = "images"
 
 var wg sync.WaitGroup
-
-type Result struct {
-	Code  int    `json:"code"`
-	Msg   string `json:"msg"`
-	Count int    `json:"count"`
-	Rows  []struct {
-		URL string `json:"url"`
-	} `json:"rows"`
-}
 
 type Items struct {
 	XMLName  xml.Name `xml:"items"`
@@ -45,7 +37,7 @@ type Item struct {
 	Autocomplete string   `xml:"autocomplete,attr"`
 }
 
-func GetXml(list []Item) string {
+func GetXML(list []Item) string {
 	bs := Items{Version: "1.0", Encoding: "UTF-8"}
 	for _, v := range list {
 		v.Uid = time.Now().UnixNano()
@@ -56,63 +48,31 @@ func GetXml(list []Item) string {
 	return string(data)
 }
 
-func showError(msg string) {
-	list := make([]Item, 0)
-	list = append(list, Item{Arg: "", Title: "异常:" + msg, Icon: ""})
-	xmlStr := GetXml(list)
-	wg.Wait()
-	fmt.Println(xmlStr)
-	os.Exit(1)
-}
-
 func getContent(query string) {
-	client := &http.Client{}
-
-	req, err := http.NewRequest("POST", ApiUrl, strings.NewReader("types=search&action=searchpic&limit=60&offset=0&wd="+query))
+	url := QueryUrl + query
+	resp, err := http.Get(url)
 	if err != nil {
-		showError(err.Error())
+		log.Fatal("网络请求失败:", err)
 	}
-
-	req.Header.Set("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8")
-	req.Header.Set("Accept", "application/json, text/javascript, */*; q=0.01")
-	req.Header.Set("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36")
-	req.Header.Set("Referer", ApiUrl)
-	req.Header.Set("Origin", ApiUrl)
-
-	resp, err := client.Do(req)
-
-	if err != nil {
-		showError(err.Error())
+	if resp.StatusCode != 200 {
+		log.Fatalf("网络请求失败: %d %s", resp.StatusCode, resp.Status)
 	}
-
 	defer resp.Body.Close()
 
-	body, err := ioutil.ReadAll(resp.Body)
+	doc, err := goquery.NewDocumentFromReader(resp.Body)
 	if err != nil {
-		showError(err.Error())
+		log.Fatal(err)
 	}
-	rst := Result{}
-
-	if err := json.Unmarshal(body, &rst); err != nil {
-		showError(err.Error())
-	}
-
-	if rst.Code != 200 {
-		showError(rst.Msg)
-	}
-	if rst.Count <= 0 {
-		showError("无结果")
-	}
-
 	list := make([]Item, 0)
-	for _, v := range rst.Rows {
-		url := v.URL
+	doc.Find(".img-responsive").Each(func(i int, s *goquery.Selection) {
+		url, _ := s.Attr("data-original")
+		name := s.Next().Text()
 		icon := getFileName(url)
 		wg.Add(1)
 		go saveFile(url)
-		list = append(list, Item{Arg: icon, Title: query, Icon: icon})
-	}
-	xmlStr := GetXml(list)
+		list = append(list, Item{Arg: icon, Title: name, Icon: icon})
+	})
+	xmlStr := GetXML(list)
 	wg.Wait()
 	fmt.Println(xmlStr)
 }
