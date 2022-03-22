@@ -15,7 +15,7 @@ import (
 	"github.com/PuerkitoBio/goquery"
 )
 
-const QueryUrl = "https://www.doutula.com/search?keyword="
+const QueryUrl = "https://www.pkdoutu.com/search?keyword="
 const ImgPath = "images"
 
 var wg sync.WaitGroup
